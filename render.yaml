@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: otp-relay
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: ENCRYPTION_KEY
+        sync: false        # set manually in the Render dashboard (secret)
+      - key: DEVICE_API_KEY
+        sync: false
+      - key: EXTENSION_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGIN
+        sync: false
+      - key: OTP_TTL_SECONDS
+        value: "1800"
